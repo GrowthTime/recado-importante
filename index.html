@@ -1,0 +1,374 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Recado Importante &ndash; Chef. Claudia</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;500&family=Saira:wght@600;700&family=Montserrat:wght@400;500&display=swap" rel="stylesheet">
+    <style>
+        /* ========== RESET ========== */
+        *, *::before, *::after { margin:0; padding:0; box-sizing:border-box; }
+        body {
+            font-family: 'Roboto', sans-serif;
+            background: #FDF7E7;
+            color: #333;
+            -webkit-font-smoothing: antialiased;
+        }
+        img { max-width:100%; height:auto; display:block; }
+        a { text-decoration:none; color:inherit; }
+
+        /* ========== COMMENTS SECTION (HIDDEN) ========== */
+        .comments-section {
+            display: none !important;
+            background: #1B041A;
+            box-shadow: 0px -58px 46px -36px #1B041A;
+            padding: 0 0 60px 0;
+        }
+        .comments-section__inner {
+            max-width: 1000px;
+            margin: 0 auto;
+        }
+        .comments-header {
+            background: #FFFFFF;
+            border-radius: 15px 15px 0 0;
+            padding: 15px 25px;
+        }
+        .comments-header__title {
+            font-family: 'Roboto', sans-serif;
+            font-size: 14px;
+            font-weight: 500;
+            color: #686868;
+        }
+        .comments-header__divider {
+            height: 1px;
+            background: #CFCFCF;
+            margin-top: 10px;
+        }
+        .comment-block {
+            background: #FFFFFF;
+            padding: 10px 25px 0 25px;
+        }
+        .comment {
+            display: flex;
+            gap: 10px;
+            margin-bottom: 12px;
+        }
+        .comment__avatar {
+            width: 55px;
+            height: 55px;
+            border-radius: 50%;
+            background: #E0E0E0;
+            flex-shrink: 0;
+            overflow: hidden;
+        }
+        .comment__avatar img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+        .comment__body {
+            flex: 1;
+        }
+        .comment__name {
+            color: #365899;
+            font-weight: 700;
+            font-size: 14px;
+        }
+        .comment__text {
+            font-size: 14px;
+            color: #5C5C5C;
+            line-height: 1.4;
+            margin-top: 2px;
+        }
+        .comment__meta {
+            font-size: 10px;
+            color: #7A7A7A;
+            margin-top: 4px;
+            margin-left: 22px;
+        }
+        .comment__divider {
+            height: 1px;
+            background: #CFCFCF;
+            margin: 8px 0;
+        }
+        .comments-footer {
+            background: #FFFFFF;
+            border-radius: 0 0 15px 15px;
+            padding: 0 25px 15px 25px;
+        }
+        .comments-footer__divider {
+            height: 1px;
+            background: #CFCFCF;
+            margin-bottom: 10px;
+        }
+        .comments-footer__logo {
+            width: 13%;
+            border-radius: 2px;
+        }
+        .comments-footer__text {
+            font-size: 12px;
+            color: #7A7A7A;
+            margin-top: 8px;
+        }
+
+        /* ========== YELLOW ATTENTION BAR ========== */
+        .attention-bar {
+            background: #FFB400;
+            padding: 10px 20px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+        .attention-bar__text {
+            font-family: 'Saira', sans-serif;
+            font-size: 30px;
+            font-weight: 700;
+            color: #000000;
+            text-align: center;
+            width: 70%;
+        }
+
+        /* ========== VIDEO SECTION ========== */
+        .video-section {
+            background: #8A0000;
+            min-height: 600px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            padding: 20px 0;
+        }
+        .video-section__inner {
+            max-width: 900px;
+            width: 100%;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            padding: 0 20px;
+        }
+        .video-section__heading {
+            background: #FFFFFF;
+            border-radius: 5px;
+            padding: 15px 25px;
+            text-align: center;
+            margin-bottom: 25px;
+            width: 100%;
+        }
+        .video-section__heading h3 {
+            font-family: 'Saira', sans-serif;
+            font-size: 36px;
+            font-weight: 600;
+            color: #000000;
+            line-height: 1.2;
+        }
+        .video-section__player {
+            width: 100%;
+            position: relative;
+            padding-bottom: 56.25%;
+            border-radius: 8px;
+            overflow: hidden;
+            background: #000;
+            margin-bottom: 20px;
+        }
+        .video-section__player iframe {
+            position: absolute;
+            top: 0; left: 0;
+            width: 100%; height: 100%;
+            border: 0;
+        }
+        .video-section__text {
+            font-family: 'Montserrat', sans-serif;
+            font-size: 18px;
+            font-weight: 400;
+            color: #FFFFFF;
+            text-align: center;
+            margin-bottom: 25px;
+        }
+
+        /* ========== CTA BUTTON (hidden initially) ========== */
+        .panda-button {
+            font-weight: 900;
+            align-items: center;
+            appearance: none;
+            background-color: #F0BC25;
+            border-radius: 4px;
+            border-width: 0;
+            border: none;
+            box-shadow: rgba(45, 35, 66, 0.4) 0 2px 4px,
+                        rgba(45, 35, 66, 0.3) 0 7px 13px -3px,
+                        rgba(0, 0, 0, 0.4) 0 -3px 0 inset;
+            color: #fff;
+            cursor: pointer;
+            display: none;
+            justify-content: center;
+            padding: 17.6px 44px;
+            text-align: center;
+            text-decoration: none;
+            transition: box-shadow .15s, transform .15s;
+            will-change: box-shadow, transform;
+            font-size: 24px;
+            font-family: 'Saira', sans-serif;
+            line-height: 1.2;
+        }
+        .panda-button:hover {
+            background: #F0BC25 !important;
+            color: #fff;
+            box-shadow: rgba(45, 35, 66, 0.4) 0 2px 8px,
+                        rgba(45, 35, 66, 0.3) 0 7px 13px -3px,
+                        rgba(0, 0, 0, 0.4) 0 -3px 0 inset;
+            transform: translateY(-2px);
+        }
+        .panda-button:active {
+            box-shadow: rgba(0, 0, 0, 1) 0 3px 7px inset;
+            transform: translateY(2px);
+        }
+
+        .spacer { height: 40px; }
+
+        /* ========== RESPONSIVE ========== */
+        @media (max-width: 767px) {
+            .attention-bar {
+                padding: 10px 30px;
+            }
+            .attention-bar__text {
+                font-size: 24px;
+                width: 100%;
+            }
+            .video-section {
+                min-height: auto;
+                padding: 20px;
+            }
+            .video-section__heading h3 {
+                font-size: 30px;
+            }
+            .video-section__text {
+                font-size: 16px;
+            }
+            .panda-button {
+                font-size: 20px;
+                padding: 14px 30px;
+            }
+        }
+    </style>
+</head>
+<body>
+
+    <!-- ==================== COMMENTS SECTION (HIDDEN) ==================== -->
+    <section class="comments-section">
+        <div class="comments-section__inner">
+            <div class="comments-header">
+                <p class="comments-header__title">24 Coment&aacute;rios</p>
+                <div class="comments-header__divider"></div>
+            </div>
+            <div class="comment-block">
+                <div class="comment">
+                    <div class="comment__avatar"><img src="https://salgadeiroprofissional.com.br/wp-content/plugins/elementor/assets/images/placeholder.png" alt="" loading="lazy"></div>
+                    <div class="comment__body">
+                        <p class="comment__text"><span class="comment__name">Luciana disse:</span> Feliiiz demais!!! Obrigada Henrique, achava que o Guia n ia funcionar pq ja tinha feito de td pro meu namorado voltar, mas msmo assim quis tentar e olha agora parece que e nosso primeiro mes de namoro todo dia</p>
+                        <p class="comment__meta">Responder . Curtir . Seguir . 3 min</p>
+                    </div>
+                </div>
+                <div class="comment__divider"></div>
+            </div>
+            <div class="comments-footer">
+                <div class="comments-footer__divider"></div>
+                <img class="comments-footer__logo" src="https://salgadeiroprofissional.com.br/wp-content/uploads/2024/05/logo-salgadeiro.png.webp" alt="" loading="lazy">
+                <p class="comments-footer__text">Plug-in social do Facebook</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- ==================== YELLOW ATTENTION BAR ==================== -->
+    <div class="attention-bar">
+        <p class="attention-bar__text">ATEN&Ccedil;&Atilde;O! SE VOC&Ecirc; ACABOU DE COMPRAR SUA APOSTILA, ASSISTA ESSE V&Iacute;DEO!</p>
+    </div>
+
+    <!-- ==================== VIDEO SECTION ==================== -->
+    <section class="video-section">
+        <div class="video-section__inner">
+            <div class="video-section__heading">
+                <h3>RECADO EXCLUSIVO PARA QUEM ACABOU DE COMPRAR A APOSTILA. ASSISTA AGORA!</h3>
+            </div>
+
+            <div class="video-section__player" id="panda-player-container">
+                <iframe
+                    id="panda-player"
+                    src="https://player-vz-4dc68d01-a7d.tv.pandavideo.com.br/embed/?v=ac6284d3-ddc0-4645-b779-4032d73494b6"
+                    allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture"
+                    allowfullscreen
+                ></iframe>
+            </div>
+
+            <p class="video-section__text">Em menos de 10 minutos voc&ecirc; vai descobrir o presente que preparei para voc&ecirc;!</p>
+
+            <a
+                href="https://pay.hotmart.com/A102120077C?off=78kzkms3"
+                target="_blank"
+                rel="noopener"
+                class="panda-button"
+                id="btn-cta"
+                data-show-time="150"
+            >
+                Entrar para o Clube dos Salgadeiros
+            </a>
+
+            <div class="spacer"></div>
+        </div>
+    </section>
+
+    <!-- ==================== SCRIPTS ==================== -->
+    <script src="https://player.pandavideo.com.br/api.v2.js" defer></script>
+    <script>
+    'use strict';
+    (function() {
+        var SHOW_TIME = 150; // seconds (2min30s)
+        var STORAGE_KEY = 'pandavideo_btn_watched_150';
+        var btn = document.getElementById('btn-cta');
+
+        // If already watched before, show button immediately
+        if (localStorage.getItem(STORAGE_KEY)) {
+            btn.style.display = 'flex';
+            btn.style.opacity = '1';
+        }
+
+        // Listen for PandaVideo player events
+        window.addEventListener('message', function(event) {
+            try {
+                var data;
+                if (typeof event.data === 'string') {
+                    data = JSON.parse(event.data);
+                } else {
+                    data = event.data;
+                }
+
+                // PandaVideo sends timeupdate messages
+                if (data && data.message === 'panda_timeupdate' && data.currentTime) {
+                    if (data.currentTime >= SHOW_TIME) {
+                        btn.style.display = 'flex';
+                        localStorage.setItem(STORAGE_KEY, 'true');
+                    }
+                }
+
+                // Also handle the generic pandavideo event format
+                if (data && data.currentTime && data.currentTime >= SHOW_TIME) {
+                    btn.style.display = 'flex';
+                    localStorage.setItem(STORAGE_KEY, 'true');
+                }
+            } catch(e) {
+                // Ignore non-JSON messages
+            }
+        });
+
+        // Pause video when CTA button is clicked
+        btn.addEventListener('click', function() {
+            var iframe = document.getElementById('panda-player');
+            if (iframe && iframe.contentWindow) {
+                iframe.contentWindow.postMessage('{"message":"pause"}', '*');
+            }
+        });
+    })();
+    </script>
+
+</body>
+</html>
